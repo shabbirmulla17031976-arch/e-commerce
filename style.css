@@ -1,0 +1,31 @@
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.product-card {
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.price {
+    font-weight: bold;
+    color: #28a745;
+    font-size: 1.3em;
+}
+
+.dropdown-menu {
+    min-width: 200px;
+}

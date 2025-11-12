@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechHub Store - Electronics Shopping</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-laptop"></i> TechHub Store</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Policies</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#privacy">Privacy Policy</a></li>
+                        <li><a class="dropdown-item" href="#terms">Terms of Service</a></li>
+                        <li><a class="dropdown-item" href="#refund">Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+            <form class="d-flex me-3" id="search-form">
+                <input class="form-control me-2" type="search" placeholder="Search..." id="search-input">
+                <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <a class="nav-link text-white" href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero py-5 text-white text-center">
+    <div class="container h-100 d-flex flex-column justify-content-center">
+        <h1 class="display-4">Welcome to TechHub Store</h1>
+        <p class="lead">Premium electronics at unbeatable prices. Fast delivery across India.</p>
+        <a href="#products" class="btn btn-light btn-lg">Shop Now</a>
+    </div>
+</section>
+
+<!-- Products -->
+<section id="products" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Products</h2>
+        <div class="row" id="product-grid"></div>
+    </div>
+</section>
+
+<!-- About Us -->
+<section id="about" class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2>About TechHub Store</h2>
+                <p><strong>TechHub Store</strong> is a trusted online electronics retailer based in India, founded in 2024. We specialize in bringing the latest smartphones, laptops, and accessories to tech enthusiasts across the country.</p>
+                <p>Our mission is to provide <strong>genuine products, fast delivery, and excellent customer support</strong>. With a dedicated team and secure payment gateways, we ensure a seamless shopping experience.</p>
+                <p><i class="fas fa-check text-success"></i> 100% Genuine Products<br>
+                   <i class="fas fa-check text-success"></i> 7-Day Replacement Guarantee<br>
+                   <i class="fas fa-check text-success"></i> Pan-India Delivery</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="https://via.placeholder.com/500x400?text=TechHub+Team" alt="About Us" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Privacy Policy -->
+<section id="privacy" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Privacy Policy</h2>
+        <div class="card">
+            <div class="card-body">
+                <p>At <strong>TechHub Store</strong>, we respect your privacy. This policy explains how we collect, use, and protect your data.</p>
+                <h5>1. Information We Collect</h5>
+                <ul>
+                    <li>Name, email, phone, and shipping address</li>
+                    <li>Payment details (processed securely via Razorpay/Stripe)</li>
+                    <li>Browsing behavior (via cookies)</li>
+                </ul>
+                <h5>2. How We Use Your Data</h5>
+                <ul>
+                    <li>Process orders and deliver products</li>
+                    <li>Send order updates and promotional emails (you can unsubscribe)</li>
+                    <li>Improve website experience</li>
+                </ul>
+                <h5>3. Data Security</h5>
+                <p>We use SSL encryption and comply with PCI DSS standards. Your data is never sold to third parties.</p>
+                <p><strong>Last Updated:</strong> November 12, 2025</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Terms of Service -->
+<section id="terms" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Terms of Service</h2>
+        <div class="card">
+            <div class="card-body">
+                <p>By using TechHub Store, you agree to the following terms:</p>
+                <ul>
+                    <li>You must be 18+ to place an order</li>
+                    <li>All products come with manufacturer warranty</li>
+                    <li>We reserve the right to cancel suspicious orders</li>
+                    <li>Prices may change without notice</li>
+                    <li>Disputes will be resolved under Indian law</li>
+                </ul>
+                <p><strong>Governing Law:</strong> India</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Refund Policy -->
+<section id="refund" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Refund & Return Policy</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5>7-Day Replacement Guarantee</h5>
+                <p>If you receive a defective or wrong product, contact us within <strong>7 days</strong> of delivery.</p>
+                <h5>Eligible for Return:</h5>
+                <ul>
+                    <li>Damaged or defective items</li>
+                    <li>Wrong product delivered</li>
+                    <li>Product not as described</li>
+                </ul>
+                <h5>Non-Returnable:</h5>
+                <ul>
+                    <li>Used or opened software</li>
+                    <li>Personalized items</li>
+                    <li>Products without original packaging</li>
+                </ul>
+                <h5>Refund Process:</h5>
+                <ol>
+                    <li>Contact us at <a href="tel:7378646180">7378646180</a> or <a href="mailto:musaddikj09@gmail.com">musaddikj09@gmail.com</a></li>
+                    <li>Return the product via courier (we'll guide you)</li>
+                    <li>Refund issued within 5-7 business days</li>
+                </ol>
+                <p><strong>Note:</strong> Refund will be credited to the original payment method.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Us -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Contact Us</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Get in Touch</h4>
+                <p><i class="fas fa-phone"></i> <strong>Phone:</strong> <a href="tel:7378646180">7378646180</a></p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:musaddikj09@gmail.com">musaddikj09@gmail.com</a></p>
+                <p><i class="fas fa-clock"></i> <strong>Support Hours:</strong> Mon-Sat, 10 AM - 6 PM</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> TechHub Store, Mumbai, India</p>
+            </div>
+            <div class="col-lg-6">
+                <form id="contact-form">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cart Modal -->
+<div class="modal fade" id="cart-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Your Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="cart-items"></div>
+            <div class="modal-footer">
+                <h5>Total: $<span id="cart-total">0</span></h5>
+                <button class="btn btn-success" id="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+        <p>&copy; 2025 TechHub Store. All Rights Reserved.</p>
+        <p>
+            <a href="#privacy" class="text-white">Privacy Policy</a> |
+            <a href="#terms" class="text-white">Terms</a> |
+            <a href="#refund" class="text-white">Refund Policy</a>
+        </p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
