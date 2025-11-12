@@ -3,10 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechHub Store - Electronics Shopping</title>
+    <title>TechHub Store - Complete & Working</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; margin: 0; }
+        .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 120px 20px; }
+        .hero h1 { font-size: 3rem; }
+        section { padding: 60px 0; }
+        .bg-light { background-color: #f8f9fa !important; }
+        .product-card { border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 20px rgba(0,0,0,0.15); }
+        .price { color: #28a745; font-weight: bold; font-size: 1.3em; }
+        .credit-card { width: 380px; height: 240px; margin: 30px auto; perspective: 1000px; font-family: 'Courier New'; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 16px; padding: 20px; transition: transform 0.6s; }
+        .card-front { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .card-back { background: #f8f9fa; color: #333; transform: rotateY(180deg); }
+        .credit-card:hover .card-front { transform: rotateY(-180deg); }
+        .credit-card:hover .card-back { transform: rotateY(0deg); }
+        .chip { width: 50px; height: 35px; background: gold; border-radius: 6px; position: absolute; top: 60px; left: 30px; }
+        .card-number { position: absolute; bottom: 70px; left: 30px; font-size: 1.4em; letter-spacing: 3px; }
+        .card-holder { position: absolute; bottom: 40px; left: 30px; text-transform: uppercase; }
+        .card-expiry { position: absolute; bottom: 40px; right: 30px; }
+        .card-brand { position: absolute; bottom: 15px; right: 30px; font-size: 1.8em; font-weight: bold; }
+        .magnetic-strip { height: 40px; background: #333; margin: 30px 0; border-radius: 4px; }
+        .cvv-strip { position: absolute; bottom: 15px; right: 30px; background: white; padding: 5px 12px; border-radius: 6px; font-weight: bold; }
+        .d-none { display: none !important; }
+        .toast { position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px; }
+        .card { border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        footer { background: #222; color: #aaa; padding: 40px 0 20px; }
+        footer a { color: #fff; }
+    </style>
 </head>
 <body>
 
@@ -21,8 +50,9 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="#gift-voucher">Gift Voucher</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Policies</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Policies</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#privacy">Privacy Policy</a></li>
                         <li><a class="dropdown-item" href="#terms">Terms of Service</a></li>
@@ -34,152 +64,144 @@
             </ul>
             <form class="d-flex me-3" id="search-form">
                 <input class="form-control me-2" type="search" placeholder="Search..." id="search-input">
-                <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+                <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
-            <a class="nav-link text-white" href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a>
+            <a class="nav-link text-white" href="#" id="cart-icon">
+                Cart (<span id="cart-count">0</span>)
+            </a>
         </div>
     </div>
 </nav>
 
-<!-- Hero Section -->
-<section id="home" class="hero py-5 text-white text-center">
-    <div class="container h-100 d-flex flex-column justify-content-center">
-        <h1 class="display-4">Welcome to TechHub Store</h1>
-        <p class="lead">Premium electronics at unbeatable prices. Fast delivery across India.</p>
+<!-- Hero -->
+<section id="home" class="hero">
+    <div class="container">
+        <h1>Welcome to TechHub Store</h1>
+        <p class="lead">Premium Electronics & Gift Vouchers | Fast Delivery Across India</p>
         <a href="#products" class="btn btn-light btn-lg">Shop Now</a>
     </div>
 </section>
 
 <!-- Products -->
-<section id="products" class="py-5 bg-light">
+<section id="products" class="bg-light">
     <div class="container">
         <h2 class="text-center mb-5">Our Products</h2>
         <div class="row" id="product-grid"></div>
     </div>
 </section>
 
-<!-- About Us -->
-<section id="about" class="py-5">
+<!-- Gift Voucher -->
+<section id="gift-voucher">
     <div class="container">
+        <h2 class="text-center mb-5">Create Gift Voucher</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form id="voucher-form" class="card p-4 shadow">
+                    <div class="mb-3"><label class="form-label">Recipient Name</label><input type="text" id="voucher-name" class="form-control" required></div>
+                    <div class="mb-3"><label class="form-label">Mobile Number</label><input type="tel" id="voucher-mobile" class="form-control" required></div>
+                    <div class="mb-3"><label class="form-label">Currency</label>
+                        <select id="voucher-currency" class="form-select">
+                            <option value="INR">INR (₹)</option>
+                            <option value="USD">USD ($)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3"><label class="form-label">Amount</label><input type="number" id="voucher-amount" class="form-control" min="100" required></div>
+                    <div class="mb-3"><label class="form-label">4-Digit PIN</label><input type="password" id="voucher-pin" class="form-control" maxlength="4" required></div>
+                    <button type="submit" class="btn btn-success w-100">Generate Voucher</button>
+                </form>
+
+                <div id="voucher-result" class="d-none mt-5 text-center">
+                    <h4 class="text-success mb-4">Gift Voucher Ready!</h4>
+                    <div id="voucher-card" class="credit-card">
+                        <div class="card-front">
+                            <div class="chip"></div>
+                            <div class="card-number" id="card-number">0000 0000 0000 0000</div>
+                            <div class="card-holder" id="card-holder">HOLDER</div>
+                            <div class="card-expiry">THRU <span id="card-expiry">12/28</span></div>
+                            <div class="card-brand" id="card-brand">VISA</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="magnetic-strip"></div>
+                            <div class="cvv-strip">CVV <span id="card-cvv">***</span></div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button id="download-voucher" class="btn btn-primary">Download</button>
+                        <button id="print-voucher" class="btn btn-secondary">Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Us -->
+<section id="about" class="bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">About TechHub Store</h2>
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h2>About TechHub Store</h2>
-                <p><strong>TechHub Store</strong> is a trusted online electronics retailer based in India, founded in 2024. We specialize in bringing the latest smartphones, laptops, and accessories to tech enthusiasts across the country.</p>
-                <p>Our mission is to provide <strong>genuine products, fast delivery, and excellent customer support</strong>. With a dedicated team and secure payment gateways, we ensure a seamless shopping experience.</p>
-                <p><i class="fas fa-check text-success"></i> 100% Genuine Products<br>
-                   <i class="fas fa-check text-success"></i> 7-Day Replacement Guarantee<br>
-                   <i class="fas fa-check text-success"></i> Pan-India Delivery</p>
+                <p><strong>TechHub Store</strong> is a trusted online electronics retailer based in India, founded in 2024.</p>
+                <p>Our mission: <strong>Genuine products, fast delivery, excellent support</strong>.</p>
+                <p>100% Genuine | 7-Day Replacement | Pan-India Delivery</p>
             </div>
             <div class="col-lg-6 text-center">
-                <img src="https://via.placeholder.com/500x400?text=TechHub+Team" alt="About Us" class="img-fluid rounded shadow">
+                <img src="https://via.placeholder.com/500x400?text=TechHub+Team" alt="Team" class="img-fluid rounded shadow">
             </div>
         </div>
     </div>
 </section>
 
 <!-- Privacy Policy -->
-<section id="privacy" class="py-5 bg-light">
+<section id="privacy">
     <div class="container">
         <h2 class="text-center mb-4">Privacy Policy</h2>
-        <div class="card">
-            <div class="card-body">
-                <p>At <strong>TechHub Store</strong>, we respect your privacy. This policy explains how we collect, use, and protect your data.</p>
-                <h5>1. Information We Collect</h5>
-                <ul>
-                    <li>Name, email, phone, and shipping address</li>
-                    <li>Payment details (processed securely via Razorpay/Stripe)</li>
-                    <li>Browsing behavior (via cookies)</li>
-                </ul>
-                <h5>2. How We Use Your Data</h5>
-                <ul>
-                    <li>Process orders and deliver products</li>
-                    <li>Send order updates and promotional emails (you can unsubscribe)</li>
-                    <li>Improve website experience</li>
-                </ul>
-                <h5>3. Data Security</h5>
-                <p>We use SSL encryption and comply with PCI DSS standards. Your data is never sold to third parties.</p>
-                <p><strong>Last Updated:</strong> November 12, 2025</p>
-            </div>
-        </div>
+        <div class="card"><div class="card-body">
+            <p>We collect name, email, phone, address, and payment info (securely via Razorpay/Stripe). Used only for order processing and updates. We never sell your data.</p>
+            <p><strong>Last Updated:</strong> November 12, 2025</p>
+        </div></div>
     </div>
 </section>
 
 <!-- Terms of Service -->
-<section id="terms" class="py-5">
+<section id="terms" class="bg-light">
     <div class="container">
         <h2 class="text-center mb-4">Terms of Service</h2>
-        <div class="card">
-            <div class="card-body">
-                <p>By using TechHub Store, you agree to the following terms:</p>
-                <ul>
-                    <li>You must be 18+ to place an order</li>
-                    <li>All products come with manufacturer warranty</li>
-                    <li>We reserve the right to cancel suspicious orders</li>
-                    <li>Prices may change without notice</li>
-                    <li>Disputes will be resolved under Indian law</li>
-                </ul>
-                <p><strong>Governing Law:</strong> India</p>
-            </div>
-        </div>
+        <div class="card"><div class="card-body">
+            <ul><li>You must be 18+</li><li>Prices may change</li><li>We can cancel suspicious orders</li><li>Disputes under Indian law</li></ul>
+        </div></div>
     </div>
 </section>
 
 <!-- Refund Policy -->
-<section id="refund" class="py-5 bg-light">
+<section id="refund">
     <div class="container">
         <h2 class="text-center mb-4">Refund & Return Policy</h2>
-        <div class="card">
-            <div class="card-body">
-                <h5>7-Day Replacement Guarantee</h5>
-                <p>If you receive a defective or wrong product, contact us within <strong>7 days</strong> of delivery.</p>
-                <h5>Eligible for Return:</h5>
-                <ul>
-                    <li>Damaged or defective items</li>
-                    <li>Wrong product delivered</li>
-                    <li>Product not as described</li>
-                </ul>
-                <h5>Non-Returnable:</h5>
-                <ul>
-                    <li>Used or opened software</li>
-                    <li>Personalized items</li>
-                    <li>Products without original packaging</li>
-                </ul>
-                <h5>Refund Process:</h5>
-                <ol>
-                    <li>Contact us at <a href="tel:7378646180">7378646180</a> or <a href="mailto:musaddikj09@gmail.com">musaddikj09@gmail.com</a></li>
-                    <li>Return the product via courier (we'll guide you)</li>
-                    <li>Refund issued within 5-7 business days</li>
-                </ol>
-                <p><strong>Note:</strong> Refund will be credited to the original payment method.</p>
-            </div>
-        </div>
+        <div class="card"><div class="card-body">
+            <h5>7-Day Replacement</h5>
+            <p>Contact us within 7 days for defective/wrong items.</p>
+            <p><strong>Contact:</strong> <a href="tel:7378646180">7378646180</a> | <a href="mailto:musaddikj09@gmail.com">musaddikj09@gmail.com</a></p>
+            <p>Refund in 5-7 days to original payment method.</p>
+        </div></div>
     </div>
 </section>
 
 <!-- Contact Us -->
-<section id="contact" class="py-5">
+<section id="contact" class="bg-light">
     <div class="container">
         <h2 class="text-center mb-5">Contact Us</h2>
         <div class="row">
             <div class="col-lg-6">
-                <h4>Get in Touch</h4>
-                <p><i class="fas fa-phone"></i> <strong>Phone:</strong> <a href="tel:7378646180">7378646180</a></p>
-                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:musaddikj09@gmail.com">musaddikj09@gmail.com</a></p>
-                <p><i class="fas fa-clock"></i> <strong>Support Hours:</strong> Mon-Sat, 10 AM - 6 PM</p>
-                <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> TechHub Store, Mumbai, India</p>
+                <p><strong>Phone:</strong> <a href="tel:7378646180">7378646180</a></p>
+                <p><strong>Email:</strong> <a href="mailto:musaddikj09@gmail.com">musaddikj09@gmail.com</a></p>
+                <p><strong>Hours:</strong> Mon-Sat, 10 AM - 6 PM</p>
             </div>
             <div class="col-lg-6">
                 <form id="contact-form">
-                    <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Your Name" required>
-                    </div>
-                    <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Your Email" required>
-                    </div>
-                    <div class="mb-3">
-                        <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div class="mb-3"><input type="text" class="form-control" placeholder="Name" required></div>
+                    <div class="mb-3"><input type="email" class="form-control" placeholder="Email" required></div>
+                    <div class="mb-3"><textarea class="form-control" rows="4" placeholder="Message" required></textarea></div>
+                    <button type="submit" class="btn btn-primary">Send</button>
                 </form>
             </div>
         </div>
@@ -187,35 +209,139 @@
 </section>
 
 <!-- Cart Modal -->
-<div class="modal fade" id="cart-modal" tabindex="-1">
+<div class="modal fade" id="cart-modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title">Your Cart</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body" id="cart-items"></div>
+            <div class="modal-body" id="cart-items">
+                <p class="text-center text-muted">Cart is empty</p>
+            </div>
             <div class="modal-footer">
                 <h5>Total: $<span id="cart-total">0</span></h5>
-                <button class="btn btn-success" id="checkout-btn">Proceed to Checkout</button>
+                <button class="btn btn-success" id="checkout-btn">Checkout</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Footer -->
-<footer class="bg-dark text-white py-4 mt-5">
+<footer>
     <div class="container text-center">
-        <p>&copy; 2025 TechHub Store. All Rights Reserved.</p>
+        <p>© 2025 TechHub Store. All Rights Reserved.</p>
         <p>
-            <a href="#privacy" class="text-white">Privacy Policy</a> |
-            <a href="#terms" class="text-white">Terms</a> |
-            <a href="#refund" class="text-white">Refund Policy</a>
+            <a href="#privacy">Privacy</a> |
+            <a href="#terms">Terms</a> |
+            <a href="#refund">Refund</a>
         </p>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script>
+    const products = [
+        { id: 1, name: 'iPhone 15 Pro', price: 999, img: 'https://via.placeholder.com/300x200?text=iPhone+15', desc: 'A17 Pro Chip' },
+        { id: 2, name: 'MacBook Air M2', price: 1299, img: 'https://via.placeholder.com/300x200?text=MacBook+Air', desc: 'Light & Powerful' },
+        { id: 3, name: 'Samsung S24', price: 899, img: 'https://via.placeholder.com/300x200?text=Galaxy+S24', desc: 'AI Camera' }
+    ];
+    let cart = [];
+
+    function loadProducts() {
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = '';
+        products.forEach(p => {
+            const col = document.createElement('div');
+            col.className = 'col-md-4 mb-4';
+            col.innerHTML = `
+                <div class="card product-card h-100">
+                    <img src="${p.img}" class="card-img-top" alt="${p.name}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${p.name}</h5>
+                        <p class="card-text flex-grow-1">${p.desc}</p>
+                        <p class="price">$${p.price}</p>
+                        <button class="btn btn-primary mt-auto" onclick="addToCart(${p.id})">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(col);
+        });
+    }
+
+    function addToCart(id) {
+        const p = products.find(x => x.id === id);
+        const existing = cart.find(x => x.id === id);
+        if (existing) existing.qty++; else cart.push({ ...p, qty: 1 });
+        updateCart();
+        showToast(`${p.name} added!`);
+    }
+
+    function updateCart() {
+        document.getElementById('cart-count').textContent = cart.reduce((s, i) => s + i.qty, 0);
+        const items = document.getElementById('cart-items');
+        if (cart.length === 0) {
+            items.innerHTML = '<p class="text-center text-muted">Cart is empty</p>';
+            document.getElementById('cart-total').textContent = '0';
+            return;
+        }
+        items.innerHTML = cart.map(i => `
+            <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                <div><strong>${i.name}</strong><br><small>$${i.price} × ${i.qty}</small></div>
+                <button class="btn btn-sm btn-danger" onclick="removeFromCart(${i.id})">Remove</button>
+            </div>
+        `).join('');
+        document.getElementById('cart-total').textContent = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    }
+
+    function removeFromCart(id) { cart = cart.filter(x => x.id !== id); updateCart(); }
+
+    document.getElementById('cart-icon').onclick = () => {
+        updateCart();
+        new bootstrap.Modal(document.getElementById('cart-modal')).show();
+    };
+
+    document.getElementById('voucher-form').onsubmit = function(e) {
+        e.preventDefault();
+        const name = document.getElementById('voucher-name').value.trim();
+        const pin = document.getElementById('voucher-pin').value;
+        if (pin.length !== 4) return showToast('PIN must be 4 digits!', 'danger');
+
+        const num = '4' + Math.random().toString().slice(2, 17);
+        document.getElementById('card-number').textContent = num.match(/.{4}/g).join(' ');
+        document.getElementById('card-holder').textContent = name.toUpperCase();
+        document.getElementById('card-expiry').textContent = '12/28';
+        document.getElementById('card-brand').textContent = document.getElementById('voucher-currency').value === 'INR' ? 'RuPay' : 'VISA';
+        document.getElementById('card-cvv').textContent = pin;
+        document.getElementById('voucher-result').classList.remove('d-none');
+        showToast('Gift Voucher Created!', 'success');
+    };
+
+    document.getElementById('download-voucher').onclick = () => {
+        html2canvas(document.getElementById('voucher-card')).then(canvas => {
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL();
+            a.download = 'TechHub-Gift-Voucher.png';
+            a.click();
+        });
+    };
+
+    document.getElementById('print-voucher').onclick = () => window.print();
+
+    document.getElementById('contact-form').onsubmit = e => { e.preventDefault(); showToast('Message sent!', 'success'); e.target.reset(); };
+
+    function showToast(msg, type = 'success') {
+        const t = document.createElement('div');
+        t.className = `alert alert-${type} toast`;
+        t.innerHTML = `${msg} <button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 3000);
+    }
+
+    window.onload = () => {
+        loadProducts();
+        console.log("TechHub Store - All Pages Loaded!");
+    };
+</script>
 </body>
 </html>
